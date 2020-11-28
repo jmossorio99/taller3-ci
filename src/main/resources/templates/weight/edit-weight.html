@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Edit Weight</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<h2 class="mb-5">Weight</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#" th:action="@{/weight/edit/{id}(id=${sympweightbyday.sympweidaysId})}" th:object="${sympweightbyday}"
+					method="post">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="sympweidaysMax" class="col-form-label">Max</label> <input
+								type="text" th:field="*{sympweidaysMax}" class="form-control"
+								id="sympweidaysMax" placeholder="Max weight"> <span
+								th:if="${#fields.hasErrors('sympweidaysMax')}"
+								th:errors="*{sympweidaysMax}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="sympweidaysMin" class="col-form-label">Min</label> <input
+								type="text" th:field="*{sympweidaysMin}" class="form-control"
+								id="sympweidaysMin" placeholder="Min weight"> <span
+								th:if="${#fields.hasErrors('sympweidaysMin')}"
+								th:errors="*{sympweidaysMin}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="sympweidaysWeight" class="col-form-label">Weight</label>
+							<input type="text" th:field="*{sympweidaysWeight}"
+								class="form-control" id="sympweidaysWeight"
+								placeholder="Min weight"> <span
+								th:if="${#fields.hasErrors('sympweidaysWeight')}"
+								th:errors="*{sympweidaysWeight}" class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="symptomquestion" class="col-form-label">Question
+							</label> <select name="symptomquestion" th:field="*{symptomquestion}">
+								<option th:each="symptomquestion : ${symptomquestions}"
+									th:value="${symptomquestion.sympquesId}"
+									th:selected="${sympweightbyday.symptomquestion=symptomquestion}"
+									th:text="${symptomquestion.sympquesId}"></option>
+							</select> <span th:if="${#fields.hasErrors('symptomquestion')}"
+								th:errors="*{symptomquestion}" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary"
+								value="Update weight">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary"
+								value="Cancel">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
