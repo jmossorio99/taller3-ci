@@ -1,5 +1,7 @@
 package com.ossorio.taller3.service.interfaces;
 
+import java.util.List;
+
 import com.ossorio.taller3.model.Symptomquestion;
 
 public interface SymptomquestionService {
@@ -10,10 +12,8 @@ public interface SymptomquestionService {
 
 	Symptomquestion findById(Long id);
 
-	void deleteById(Long id);
-
 	void delete(Symptomquestion symptomquestion);
 
-	Iterable<Symptomquestion> findAll();
+	List<Symptomquestion> findAll();
 
 }

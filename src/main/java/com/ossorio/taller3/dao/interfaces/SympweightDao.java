@@ -12,8 +12,8 @@ public interface SympweightDao {
 
 	Sympweightbyday findById(long id);
 
-	void save(Sympweightbyday sympweightbyday);
+	Sympweightbyday save(Sympweightbyday sympweightbyday);
 
-	void update(Sympweightbyday sympweightbyday);
+	Sympweightbyday update(Sympweightbyday sympweightbyday);
 
 }

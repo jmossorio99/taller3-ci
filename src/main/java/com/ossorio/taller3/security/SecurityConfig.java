@@ -43,11 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.csrf().disable().authorizeRequests().antMatchers("/", "index").permitAll()
-				 .antMatchers("/institution/**")
-				 .hasRole(ApplicationUserRole.ADMIN.name()).antMatchers("/poll/**")
-				 .hasRole(ApplicationUserRole.ADMIN.name()).antMatchers("/question/**")
-				 .hasRole(ApplicationUserRole.OPERATOR.name()).antMatchers("/question-weight/**")
-				 .hasRole(ApplicationUserRole.OPERATOR.name()).anyRequest().authenticated()
+//				 .antMatchers("/institution/**")
+//				 .hasRole(ApplicationUserRole.ADMIN.name()).antMatchers("/poll/**")
+//				 .hasRole(ApplicationUserRole.ADMIN.name()).antMatchers("/question/**")
+//				 .hasRole(ApplicationUserRole.OPERATOR.name()).antMatchers("/question-weight/**")
+//				 .hasRole(ApplicationUserRole.OPERATOR.name()).anyRequest().authenticated()
 				.and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true).and().logout()
 				.logoutUrl("/logout").clearAuthentication(true).invalidateHttpSession(true).logoutSuccessUrl("/login");
 

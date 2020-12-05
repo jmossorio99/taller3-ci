@@ -1,5 +1,6 @@
 package com.ossorio.taller3.dao.interfaces;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.ossorio.taller3.model.Symptomquestion;
@@ -14,10 +15,10 @@ public interface SymptomquestionDao {
 
 	Symptomquestion findByName(String name);
 
-	Symptomquestion findByWeight(Double weight);
+	Symptomquestion findByWeight(BigDecimal weight);
 
-	void save(Symptomquestion symptomquestion);
+	Symptomquestion save(Symptomquestion symptomquestion);
 
-	void update(Symptomquestion symptomquestion);
+	Symptomquestion update(Symptomquestion symptomquestion);
 
 }

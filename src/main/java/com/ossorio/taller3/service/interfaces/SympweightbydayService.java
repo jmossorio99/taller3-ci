@@ -1,5 +1,7 @@
 package com.ossorio.taller3.service.interfaces;
 
+import java.util.List;
+
 import com.ossorio.taller3.model.Sympweightbyday;
 
 public interface SympweightbydayService {
@@ -10,10 +12,8 @@ public interface SympweightbydayService {
 
 	Sympweightbyday findById(Long id);
 
-	void deleteById(Long id);
-
 	void delete(Sympweightbyday sympweightbyday);
 
-	Iterable<Sympweightbyday> findAll();
+	List<Sympweightbyday> findAll();
 
 }

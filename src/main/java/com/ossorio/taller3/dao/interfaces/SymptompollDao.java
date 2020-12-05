@@ -17,10 +17,10 @@ public interface SymptompollDao {
 
 	List<Symptompoll> findByDateOrdered(Date date);
 
-	List<Symptompoll> listZeroWeightQuestions(Date date);
+	List<Symptompoll> listZeroWeightQuestions();
 
-	void save(Symptompoll symptompoll);
+	Symptompoll save(Symptompoll symptompoll);
 
-	void update(Symptompoll symptompoll);
+	Symptompoll update(Symptompoll symptompoll);
 
 }

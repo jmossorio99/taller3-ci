@@ -1,9 +1,12 @@
 package com.ossorio.taller3.service.implementation;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ossorio.taller3.dao.interfaces.SymptomquestionDao;
 import com.ossorio.taller3.model.Symptomquestion;
-import com.ossorio.taller3.repository.SymptomquestionRepository;
 import com.ossorio.taller3.service.interfaces.SymptomService;
 import com.ossorio.taller3.service.interfaces.SymptompollService;
 import com.ossorio.taller3.service.interfaces.SymptomquestionService;
@@ -13,15 +16,18 @@ public class SymptomquestionServiceImpl implements SymptomquestionService {
 
 	private final SymptomService symptomService;
 	private final SymptompollService symptomPollService;
-	private final SymptomquestionRepository repository;
+	private final SymptomquestionDao dao;
+//	private final SymptomquestionRepository repository;
 
 	public SymptomquestionServiceImpl(SymptomService symptomService, SymptompollService symptompollService,
-			SymptomquestionRepository repository) {
+			SymptomquestionDao dao) {
 		this.symptomService = symptomService;
 		symptomPollService = symptompollService;
-		this.repository = repository;
+//		this.repository = repository;
+		this.dao = dao;
 	}
 
+	@Transactional
 	@Override
 	public Symptomquestion save(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
 		if (symptomquestion != null && symptomId != null && pollId != null) {
@@ -30,7 +36,7 @@ public class SymptomquestionServiceImpl implements SymptomquestionService {
 					if (symptomPollService.findById(pollId) != null) {
 						symptomquestion.setSymptompoll(symptomPollService.findById(pollId));
 						symptomquestion.setSymptom(symptomService.findById(symptomId));
-						return repository.save(symptomquestion);
+						return dao.save(symptomquestion);
 					}
 					throw new RuntimeException("Symptompoll does not exist");
 				}
@@ -42,6 +48,7 @@ public class SymptomquestionServiceImpl implements SymptomquestionService {
 	}
 
 	@Override
+	@Transactional
 	public Symptomquestion update(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
 		if (symptomquestion != null && symptomId != null && pollId != null) {
 			if (symptomquestion.getSympquesName() != null && !symptomquestion.getSympquesName().isEmpty()) {
@@ -49,7 +56,7 @@ public class SymptomquestionServiceImpl implements SymptomquestionService {
 					if (symptomPollService.findById(pollId) != null) {
 						symptomquestion.setSymptompoll(symptomPollService.findById(pollId));
 						symptomquestion.setSymptom(symptomService.findById(symptomId));
-						return repository.save(symptomquestion);
+						return dao.update(symptomquestion);
 					}
 					throw new RuntimeException("Symptompoll does not exist");
 				}
@@ -60,24 +67,22 @@ public class SymptomquestionServiceImpl implements SymptomquestionService {
 		throw new RuntimeException("Error: Null parameter");
 	}
 
+	@Transactional
 	@Override
 	public Symptomquestion findById(Long id) {
-		return repository.findById(id).get();
+		return dao.findById(id);
 	}
 
-	@Override
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
-
+	@Transactional
 	@Override
 	public void delete(Symptomquestion symptomquestion) {
-		repository.delete(symptomquestion);
+		dao.delete(symptomquestion);
 	}
 
+	@Transactional
 	@Override
-	public Iterable<Symptomquestion> findAll() {
-		return repository.findAll();
+	public List<Symptomquestion> findAll() {
+		return dao.findAll();
 	}
 
 }

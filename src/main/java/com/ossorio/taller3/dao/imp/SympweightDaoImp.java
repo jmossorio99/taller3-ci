@@ -3,19 +3,22 @@ package com.ossorio.taller3.dao.imp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ossorio.taller3.dao.interfaces.SympweightDao;
 import com.ossorio.taller3.model.Sympweightbyday;
 
+@Repository
 public class SympweightDaoImp implements SympweightDao {
 
-	@PersistenceContext
-	private final EntityManager entityManager;
+	@Autowired
+	private EntityManager entityManager;
 
-	public SympweightDaoImp(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+//	public SympweightDaoImp(EntityManager entityManager) {
+//		this.entityManager = entityManager;
+//	}
 
 	@Override
 	public void delete(Sympweightbyday sympweightbyday) {
@@ -35,13 +38,15 @@ public class SympweightDaoImp implements SympweightDao {
 	}
 
 	@Override
-	public void save(Sympweightbyday sympweightbyday) {
+	public Sympweightbyday save(Sympweightbyday sympweightbyday) {
 		entityManager.persist(sympweightbyday);
+		return sympweightbyday;
 	}
 
 	@Override
-	public void update(Sympweightbyday sympweightbyday) {
+	public Sympweightbyday update(Sympweightbyday sympweightbyday) {
 		entityManager.merge(sympweightbyday);
+		return sympweightbyday;
 	}
 
 }

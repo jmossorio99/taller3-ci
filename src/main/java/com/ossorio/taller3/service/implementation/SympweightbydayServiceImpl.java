@@ -1,26 +1,30 @@
 package com.ossorio.taller3.service.implementation;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ossorio.taller3.dao.interfaces.SympweightDao;
 import com.ossorio.taller3.model.Sympweightbyday;
-import com.ossorio.taller3.repository.SympweightbydayRepository;
 import com.ossorio.taller3.service.interfaces.SymptomquestionService;
 import com.ossorio.taller3.service.interfaces.SympweightbydayService;
 
 @Service
 public class SympweightbydayServiceImpl implements SympweightbydayService {
 
-	private final SympweightbydayRepository repository;
+//	private final SympweightbydayRepository repository;
+	private final SympweightDao weightDao;
 	private final SymptomquestionService symptomquestionService;
 
-	public SympweightbydayServiceImpl(SympweightbydayRepository repository,
-			SymptomquestionService symptomquestionService) {
-		this.repository = repository;
+	public SympweightbydayServiceImpl(SympweightDao weightDao, SymptomquestionService symptomquestionService) {
+//		this.repository = repository;
+		this.weightDao = weightDao;
 		this.symptomquestionService = symptomquestionService;
 	}
 
+	@Transactional
 	@Override
 	public Sympweightbyday save(Sympweightbyday sympweightbyday, Long questionId) {
 		if (sympweightbyday != null && questionId != null) {
@@ -30,7 +34,7 @@ public class SympweightbydayServiceImpl implements SympweightbydayService {
 						if (sympweightbyday.getSympweidaysWeight().compareTo(BigDecimal.valueOf(0)) >= 0) {
 							if (symptomquestionService.findById(questionId) != null) {
 								sympweightbyday.setSymptomquestion(symptomquestionService.findById(questionId));
-								return repository.save(sympweightbyday);
+								return weightDao.save(sympweightbyday);
 							}
 							throw new RuntimeException("Question does not exist");
 						}
@@ -46,6 +50,7 @@ public class SympweightbydayServiceImpl implements SympweightbydayService {
 		throw new RuntimeException("Error: Null parameter");
 	}
 
+	@Transactional
 	@Override
 	public Sympweightbyday update(Sympweightbyday sympweightbyday, Long questionId) {
 		if (sympweightbyday != null && questionId != null) {
@@ -55,7 +60,7 @@ public class SympweightbydayServiceImpl implements SympweightbydayService {
 						if (sympweightbyday.getSympweidaysWeight().compareTo(BigDecimal.valueOf(0)) >= 0) {
 							if (symptomquestionService.findById(questionId) != null) {
 								sympweightbyday.setSymptomquestion(symptomquestionService.findById(questionId));
-								return repository.save(sympweightbyday);
+								return weightDao.update(sympweightbyday);
 							}
 							throw new RuntimeException("Question does not exist");
 						}
@@ -71,24 +76,22 @@ public class SympweightbydayServiceImpl implements SympweightbydayService {
 		throw new RuntimeException("Error: Null parameter");
 	}
 
+	@Transactional
 	@Override
 	public Sympweightbyday findById(Long id) {
-		return repository.findById(id).get();
+		return weightDao.findById(id);
 	}
 
-	@Override
-	public void deleteById(Long id) {
-		repository.deleteById(id);
-	}
-
+	@Transactional
 	@Override
 	public void delete(Sympweightbyday sympweightbyday) {
-		repository.delete(sympweightbyday);
+		weightDao.delete(sympweightbyday);
 	}
 
+	@Transactional
 	@Override
-	public Iterable<Sympweightbyday> findAll() {
-		return repository.findAll();
+	public List<Sympweightbyday> findAll() {
+		return weightDao.findAll();
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.ossorio.taller3.service.interfaces;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ossorio.taller3.model.Symptompoll;
@@ -13,10 +16,14 @@ public interface SymptompollService {
 
 	Symptompoll findById(Long id);
 
-	Iterable<Symptompoll> findAll();
-
-	void deleteById(Long id);
+	List<Symptompoll> findAll();
 
 	void delete(Symptompoll symptompoll);
+
+	List<Symptompoll> findByDate(Date startDate, Date endDate);
+
+	List<Symptompoll> findByDateOrdered(Date date);
+
+	List<Symptompoll> listZeroWeightQuestions();
 
 }

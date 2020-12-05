@@ -3,32 +3,30 @@ package com.ossorio.taller3.dao.imp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ossorio.taller3.dao.interfaces.UsvInstitutionDao;
-import com.ossorio.taller3.model.Institution;
 import com.ossorio.taller3.model.UsvInstitution;
 
 @Repository
 public class UsvInstitutionDaoImp implements UsvInstitutionDao {
 
-	@PersistenceContext
-	private final EntityManager entityManager;
+	@Autowired
+	private EntityManager entityManager;
 
-	public UsvInstitutionDaoImp(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+//	public UsvInstitutionDaoImp(EntityManager entityManager) {
+//		this.entityManager = entityManager;
+//	}
 
 	@Override
 	public void delete(UsvInstitution institution) {
 		entityManager.remove(institution);
-
 	}
 
 	@Override
-	public List<Institution> findAll() {
+	public List<UsvInstitution> findAll() {
 		final String jpql = "SELECT a FROM UsvInstitution a";
 		return entityManager.createQuery(jpql).getResultList();
 	}
@@ -39,19 +37,21 @@ public class UsvInstitutionDaoImp implements UsvInstitutionDao {
 	}
 
 	@Override
-	public void save(UsvInstitution institution) {
+	public UsvInstitution save(UsvInstitution institution) {
 		entityManager.persist(institution);
+		return institution;
 	}
 
 	@Override
-	public void update(UsvInstitution institution) {
+	public UsvInstitution update(UsvInstitution institution) {
 		entityManager.merge(institution);
+		return institution;
 	}
 
 	@Override
 	public UsvInstitution findByName(String name) {
-		final String query = "SELECT a FROM UsvInstitution a WHERE a.instName = " + name;
-		return (UsvInstitution) entityManager.createQuery(query).getSingleResult();
+		final String query = "SELECT a FROM UsvInstitution a WHERE a.instName = :name";
+		return (UsvInstitution) entityManager.createQuery(query).setParameter("name", name).getSingleResult();
 	}
 
 }

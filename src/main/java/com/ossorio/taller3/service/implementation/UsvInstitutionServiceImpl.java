@@ -1,31 +1,38 @@
 package com.ossorio.taller3.service.implementation;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ossorio.taller3.dao.interfaces.UsvInstitutionDao;
 import com.ossorio.taller3.model.UsvInstitution;
-import com.ossorio.taller3.repository.UsvInstitutionRepository;
 import com.ossorio.taller3.service.interfaces.UsvInstitutionService;
 
 @Service
 public class UsvInstitutionServiceImpl implements UsvInstitutionService {
 
-	private final UsvInstitutionRepository repository;
+//	private final UsvInstitutionRepository repository;
+	private final UsvInstitutionDao dao;
 
-	public UsvInstitutionServiceImpl(UsvInstitutionRepository repository) {
-		this.repository = repository;
+	public UsvInstitutionServiceImpl(UsvInstitutionDao dao) {
+//		this.repository = repository;
+		this.dao = dao;
 	}
 
 	@Override
-	public Iterable<UsvInstitution> findAll() {
-		return repository.findAll();
+	@Transactional
+	public List<UsvInstitution> findAll() {
+		return dao.findAll();
 	}
 
+	@Transactional
 	@Override
 	public UsvInstitution save(UsvInstitution usvInstitution) {
 		if (usvInstitution != null) {
 			if (usvInstitution.getInstName() != null && !usvInstitution.getInstName().isEmpty()) {
 				if (verifyInstitutionURLs(usvInstitution)) {
-					return repository.save(usvInstitution);
+					return dao.save(usvInstitution);
 				}
 				throw new RuntimeException("One or more Institution URLs did not begin with https://");
 			}
@@ -35,11 +42,12 @@ public class UsvInstitutionServiceImpl implements UsvInstitutionService {
 	}
 
 	@Override
+	@Transactional
 	public UsvInstitution update(UsvInstitution usvInstitution) {
 		if (usvInstitution != null) {
 			if (usvInstitution.getInstName() != null && !usvInstitution.getInstName().isEmpty()) {
 				if (verifyInstitutionURLs(usvInstitution)) {
-					return repository.save(usvInstitution);
+					return dao.update(usvInstitution);
 				}
 				throw new RuntimeException("One or more Institution URLs did not begin with https://");
 			}
@@ -61,21 +69,29 @@ public class UsvInstitutionServiceImpl implements UsvInstitutionService {
 				&& verifyURL(usvInstitution.getInstLdapurl());
 	}
 
+	@Transactional
 	@Override
 	public UsvInstitution findById(Long id) {
-		return repository.findById(id).get();
+		return dao.findById(id);
 	}
 
-	@Override
-	public void deleteById(Long id) {
-		repository.deleteById(id);
+//	@Override
+//	public void deleteById(Long id) {
+//		dao.deleteById(id);
+//
+//	}
 
-	}
-
+	@Transactional
 	@Override
 	public void delete(UsvInstitution institution) {
-		repository.delete(institution);
+		dao.delete(institution);
 
+	}
+
+	@Override
+	@Transactional
+	public UsvInstitution findByName(String name) {
+		return dao.findByName(name);
 	}
 
 }
