@@ -7,19 +7,19 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-public class UsvInstitutionDelegateImp implements UsvInstitutionDelegate {
+public class UsvInstitutionDelegateImpl implements UsvInstitutionDelegate {
 
-    private final String SERVER = "http://localhost:8081/";
+    private final String SERVER = "http://localhost:8081/institutions/";
     private final RestTemplate restTemplate;
 
-    public UsvInstitutionDelegateImp() {
+    public UsvInstitutionDelegateImpl() {
         this.restTemplate = new RestTemplate();
     }
 
     @Override
     public List<UsvInstitution> getAll() {
         try {
-            List<UsvInstitution> institutions = Arrays.asList(restTemplate.getForObject(SERVER + "institutions", UsvInstitution[].class));
+            List<UsvInstitution> institutions = Arrays.asList(restTemplate.getForObject(SERVER, UsvInstitution[].class));
             return institutions;
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,29 +29,29 @@ public class UsvInstitutionDelegateImp implements UsvInstitutionDelegate {
 
     @Override
     public UsvInstitution findById(Long id) {
-        UsvInstitution institution = restTemplate.getForObject(SERVER + "institutions/" + id, UsvInstitution.class);
+        UsvInstitution institution = restTemplate.getForObject(SERVER + id, UsvInstitution.class);
         return institution;
     }
 
     @Override
     public UsvInstitution findByName(String name) {
-        UsvInstitution institution = restTemplate.getForObject(SERVER + "institutions/" + name, UsvInstitution.class);
+        UsvInstitution institution = restTemplate.getForObject(SERVER + name, UsvInstitution.class);
         return institution;
     }
 
     @Override
     public UsvInstitution save(UsvInstitution institution) {
-        return restTemplate.postForEntity(SERVER + "institutions/", institution, UsvInstitution.class).getBody();
+        return restTemplate.postForEntity(SERVER, institution, UsvInstitution.class).getBody();
     }
 
     @Override
     public UsvInstitution update(UsvInstitution institution) {
-        restTemplate.put(SERVER + "institutions/", institution, UsvInstitution.class);
+        restTemplate.put(SERVER, institution, UsvInstitution.class);
         return institution;
     }
 
     @Override
     public void delete(UsvInstitution institution) {
-        restTemplate.delete(SERVER + "institutions/" + institution.getInstId());
+        restTemplate.delete(SERVER, institution, UsvInstitution.class);
     }
 }
