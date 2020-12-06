@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
 
-    private final String SERVER = "https://localhost:8081/";
+    private final String SERVER = "http://localhost:8081/questions/";
     private final RestTemplate restTemplate;
 
     public SymptomquestionDelegateImp(){
@@ -20,8 +20,7 @@ public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
     @Override
     public List<Symptomquestion> getAll() {
         try{
-            ResponseEntity<Symptomquestion[]> response = restTemplate.getForEntity(SERVER + "questions/", Symptomquestion[].class);
-            return  Arrays.asList(response.getBody());
+            return Arrays.asList(restTemplate.getForObject(SERVER, Symptomquestion[].class));
         }catch(Exception e){
             e.printStackTrace();
             return null;
@@ -30,22 +29,22 @@ public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
 
     @Override
     public Symptomquestion findById(Long id) {
-        return restTemplate.getForObject(SERVER + "questions/" + id, Symptomquestion.class);
+        return restTemplate.getForObject(SERVER + id, Symptomquestion.class);
     }
 
     @Override
     public Symptomquestion save(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
-        return restTemplate.postForObject(SERVER + "questions/", symptomquestion, Symptomquestion.class);
+        return restTemplate.postForObject(SERVER, symptomquestion, Symptomquestion.class);
     }
 
     @Override
     public Symptomquestion update(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
-        restTemplate.put(SERVER+ "questions/", symptomquestion, Symptomquestion.class);
+        restTemplate.put(SERVER, symptomquestion, Symptomquestion.class);
         return symptomquestion;
     }
 
     @Override
     public void delete(Symptomquestion symptomquestion) {
-        restTemplate.delete(SERVER + "questions/" + symptomquestion.getSympquesId());
+        restTemplate.delete(SERVER, symptomquestion, Symptomquestion.class);
     }
 }

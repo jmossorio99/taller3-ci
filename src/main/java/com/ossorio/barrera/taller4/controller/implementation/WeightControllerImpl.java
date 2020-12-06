@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ossorio.barrera.taller4.model.Sympweightbyday;
 import com.ossorio.barrera.taller4.service.interfaces.SymptomquestionService;
-import com.ossorio.barrera.taller4.service.interfaces.SympweightbydayService;
+import com.ossorio.barrera.taller4.delegate.interfaces.SymptomWeightDelegate;
 
 @Controller
 public class WeightControllerImpl {
 
-	private final SympweightbydayService weightService;
+	private final SymptomWeightDelegate symptomWeightDelegate;
 	private final SymptomquestionService questionService;
 
-	public WeightControllerImpl(SympweightbydayService weightService, SymptomquestionService questionService) {
-		this.weightService = weightService;
+	public WeightControllerImpl(SymptomWeightDelegate symptomWeightDelegate, SymptomquestionService questionService) {
+		this.symptomWeightDelegate = symptomWeightDelegate;
 		this.questionService = questionService;
 	}
 
 	@GetMapping("/weight")
 	public String weightIndex(Model model) {
-		model.addAttribute("weights", weightService.findAll());
+		model.addAttribute("weights", symptomWeightDelegate.getAll());
 		return "weight/index";
 	}
 
@@ -47,14 +47,14 @@ public class WeightControllerImpl {
 				model.addAttribute("symptomquestion", questionService.findAll());
 				return "weight/add-weight";
 			}
-			weightService.save(weight, weight.getSymptomquestion().getSympquesId());
+			symptomWeightDelegate.save(weight, weight.getSymptomquestion().getSympquesId());
 		}
 		return "redirect:/weight/";
 	}
 
 	@GetMapping("/weight/edit/{id}")
 	public String editWeight(@PathVariable("id") long id, Model model) {
-		model.addAttribute("sympweightbyday", weightService.findById(id));
+		model.addAttribute("sympweightbyday", symptomWeightDelegate.findById(id));
 		model.addAttribute("symptomquestions", questionService.findAll());
 		return "weight/edit-weight";
 	}
@@ -69,7 +69,7 @@ public class WeightControllerImpl {
 				return "weight/edit-weight";
 			}
 			weight.setSympweidaysId(id);
-			weightService.save(weight, weight.getSymptomquestion().getSympquesId());
+			symptomWeightDelegate.save(weight, weight.getSymptomquestion().getSympquesId());
 		}
 		return "redirect:/weight/";
 	}
