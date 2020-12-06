@@ -37,8 +37,8 @@ public class UsvInstitutionRestController {
     }
 
     @PutMapping
-    public UsvInstitution update(@RequestBody UsvInstitution institution){
-        return institutionService.update(institution);
+    public UsvInstitution update(@PathVariable Long id){
+        return institutionService.update(institutionService.findById(id));
     }
 
     @DeleteMapping
