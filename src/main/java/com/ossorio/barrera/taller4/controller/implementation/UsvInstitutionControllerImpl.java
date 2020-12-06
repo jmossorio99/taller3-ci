@@ -1,5 +1,6 @@
 package com.ossorio.barrera.taller4.controller.implementation;
 
+import com.ossorio.barrera.taller4.delegate.interfaces.UsvInstitutionDelegate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,20 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ossorio.barrera.taller4.model.UsvInstitution;
-import com.ossorio.barrera.taller4.service.interfaces.UsvInstitutionService;
 
 @Controller
-public class InstitutionControllerImpl {
+public class UsvInstitutionControllerImpl {
 
-	private final UsvInstitutionService usvInstitutionService;
+	private final UsvInstitutionDelegate usvInstitutionDelegate;
 
-	public InstitutionControllerImpl(UsvInstitutionService usvInstitutionService) {
-		this.usvInstitutionService = usvInstitutionService;
+	public UsvInstitutionControllerImpl(UsvInstitutionDelegate usvInstitutionDelegate) {
+		this.usvInstitutionDelegate = usvInstitutionDelegate;
 	}
 
 	@GetMapping("/institution")
 	public String indexInstitution(Model model) {
-		model.addAttribute("institutions", usvInstitutionService.findAll());
+		model.addAttribute("institutions", usvInstitutionDelegate.getAll());
 		return "institution/index";
 	}
 
@@ -41,14 +41,14 @@ public class InstitutionControllerImpl {
 			if (bindingResult.hasErrors()) {
 				return "institution/add-institution";
 			}
-			usvInstitutionService.save(institution);
+			usvInstitutionDelegate.save(institution);
 		}
 		return "redirect:/institution/";
 	}
 
 	@GetMapping("/institution/edit/{id}")
 	public String editInstitution(@PathVariable("id") long id, Model model) {
-		model.addAttribute("usvInstitution", usvInstitutionService.findById(id));
+		model.addAttribute("usvInstitution", usvInstitutionDelegate.findById(id));
 		return "institution/edit-institution";
 	}
 
@@ -61,7 +61,7 @@ public class InstitutionControllerImpl {
 				return "institution/edit/{id}";
 			}
 			institution.setInstId(id);
-			usvInstitutionService.update(institution);
+			usvInstitutionDelegate.update(institution);
 		}
 		return "redirect:/institution/";
 	}
