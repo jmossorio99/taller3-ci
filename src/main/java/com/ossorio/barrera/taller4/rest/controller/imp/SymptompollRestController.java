@@ -24,7 +24,7 @@ public class SymptompollRestController {
     }
 
     @GetMapping("/{id}")
-    public Symptompoll findById(@PathVariable Long id) {
+    public Symptompoll findById(@PathVariable("id") Long id) {
         return symptompollService.findById(id);
     }
 

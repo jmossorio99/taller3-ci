@@ -22,12 +22,12 @@ public class UsvInstitutionRestController {
     }
 
     @GetMapping("/{id}")
-    public UsvInstitution findById(@PathVariable Long id) {
+    public UsvInstitution findById(@PathVariable("id") Long id) {
         return institutionService.findById(id);
     }
 
     @GetMapping("/{name}")
-    public UsvInstitution findByName(@PathVariable String name){
+    public UsvInstitution findByName(@PathVariable("name") String name){
         return institutionService.findByName(name);
     }
 

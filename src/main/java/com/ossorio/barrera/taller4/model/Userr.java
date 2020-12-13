@@ -1,6 +1,8 @@
 package com.ossorio.barrera.taller4.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -31,6 +33,7 @@ public class Userr implements Serializable {
 	private String userPassword;
 
 	//bi-directional many-to-one association to Person
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="PERS_PERS_ID")
 	private Person person;

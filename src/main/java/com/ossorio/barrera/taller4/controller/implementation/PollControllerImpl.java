@@ -1,6 +1,7 @@
 package com.ossorio.barrera.taller4.controller.implementation;
 
 import com.ossorio.barrera.taller4.delegate.interfaces.SymptompollDelegate;
+import com.ossorio.barrera.taller4.delegate.interfaces.UsvInstitutionDelegate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,14 +22,14 @@ public class PollControllerImpl {
 
 	private final SymptompollDelegate symptompollDelegate;
 	private final EpidemeventService epidemeventService;
-	private final UsvInstitutionService instService;
+	private final UsvInstitutionDelegate usvInstitutionDelegate;
 	private final SymptomquestionService symptomquestionService;
 
 	public PollControllerImpl(SymptompollDelegate symptompollDelegate, EpidemeventService epidemeventService,
-							  UsvInstitutionService instService, SymptomquestionService symptomquestionService) {
+							  UsvInstitutionDelegate usvInstitutionDelegate, SymptomquestionService symptomquestionService) {
 		this.symptompollDelegate = symptompollDelegate;
 		this.epidemeventService = epidemeventService;
-		this.instService = instService;
+		this.usvInstitutionDelegate = usvInstitutionDelegate;
 		this.symptomquestionService = symptomquestionService;
 	}
 
@@ -42,7 +43,7 @@ public class PollControllerImpl {
 	public String addPoll(Model model) {
 		model.addAttribute("symptompoll", new Symptompoll());
 		model.addAttribute("epidemevents", epidemeventService.findAll());
-		model.addAttribute("institutions", instService.findAll());
+		model.addAttribute("institutions", usvInstitutionDelegate.getAll());
 		return "poll/add-poll";
 	}
 
@@ -53,7 +54,7 @@ public class PollControllerImpl {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.getAllErrors().toString());
 				model.addAttribute("epidemevents", epidemeventService.findAll());
-				model.addAttribute("institutions", instService.findAll());
+				model.addAttribute("institutions", usvInstitutionDelegate.getAll());
 				return "poll/add-poll";
 			}
 			symptompollDelegate.save(symptompoll);
@@ -65,7 +66,7 @@ public class PollControllerImpl {
 	public String editPoll(@PathVariable("id") long id, Model model) {
 		model.addAttribute("symptompoll", symptompollDelegate.findById(id));
 		model.addAttribute("epidemevents", epidemeventService.findAll());
-		model.addAttribute("institutions", instService.findAll());
+		model.addAttribute("institutions", usvInstitutionDelegate.getAll());
 		return "poll/edit-poll";
 	}
 
@@ -77,7 +78,7 @@ public class PollControllerImpl {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.getAllErrors().toString());
 				model.addAttribute("epidemevents", epidemeventService.findAll());
-				model.addAttribute("institutions", instService.findAll());
+				model.addAttribute("institutions", usvInstitutionDelegate.getAll());
 				return "poll/edit-poll";
 			}
 			symptompoll.setSympollId(id);
@@ -94,7 +95,7 @@ public class PollControllerImpl {
 
 	@GetMapping("/poll/{id}/institution")
 	public String showPollInstitution(@PathVariable("id") long id, Model model) {
-		model.addAttribute("institution", instService.findById(symptompollDelegate.findById(id).getInstInstId()));
+		model.addAttribute("institution", usvInstitutionDelegate.findById(symptompollDelegate.findById(id).getInstInstId()));
 		return "poll/poll-institution";
 	}
 

@@ -48,7 +48,11 @@ public class UsvInstitutionControllerImpl {
 
 	@GetMapping("/institution/edit/{id}")
 	public String editInstitution(@PathVariable("id") long id, Model model) {
-		model.addAttribute("usvInstitution", usvInstitutionDelegate.findById(id));
+		UsvInstitution inst = usvInstitutionDelegate.findById(id);
+		if (inst == null) {
+			throw new IllegalArgumentException("Invalid ID " + id);
+		}
+		model.addAttribute("usvInstitution", inst);
 		return "institution/edit-institution";
 	}
 
