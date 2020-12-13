@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface SymptomquestionDelegate {
 
-    Symptomquestion save(Symptomquestion symptomquestion, Long symptomId, Long pollId);
+    Symptomquestion save(Symptomquestion symptomquestion);
 
-    Symptomquestion update(Symptomquestion symptomquestion, Long symptomId, Long pollId);
+    Symptomquestion update(Symptomquestion symptomquestion);
 
     Symptomquestion findById(Long id);
 

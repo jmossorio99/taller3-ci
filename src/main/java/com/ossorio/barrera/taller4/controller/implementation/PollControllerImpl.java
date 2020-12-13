@@ -81,7 +81,7 @@ public class PollControllerImpl {
 				return "poll/edit-poll";
 			}
 			symptompoll.setSympollId(id);
-			symptompollDelegate.save(symptompoll);
+			symptompollDelegate.update(symptompoll);
 		}
 		return "redirect:/poll/";
 	}

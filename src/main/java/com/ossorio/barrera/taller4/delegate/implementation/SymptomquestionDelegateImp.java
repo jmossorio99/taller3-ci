@@ -33,12 +33,12 @@ public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
     }
 
     @Override
-    public Symptomquestion save(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
-        return restTemplate.postForObject(SERVER, symptomquestion, Symptomquestion.class);
+    public Symptomquestion save(Symptomquestion symptomquestion) {
+        return restTemplate.postForEntity(SERVER, symptomquestion, Symptomquestion.class).getBody();
     }
 
     @Override
-    public Symptomquestion update(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
+    public Symptomquestion update(Symptomquestion symptomquestion) {
         restTemplate.put(SERVER, symptomquestion, Symptomquestion.class);
         return symptomquestion;
     }
