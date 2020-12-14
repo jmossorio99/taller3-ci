@@ -14,6 +14,6 @@ public interface SymptomquestionDelegate {
 
     void delete(Symptomquestion symptomquestion);
 
-    List<Symptomquestion> getAll();
+    List<Symptomquestion> findAll();
 
 }

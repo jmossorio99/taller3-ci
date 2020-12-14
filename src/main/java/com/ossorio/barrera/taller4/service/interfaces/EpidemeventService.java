@@ -2,6 +2,8 @@ package com.ossorio.barrera.taller4.service.interfaces;
 
 import com.ossorio.barrera.taller4.model.Epidemevent;
 
+import java.util.List;
+
 public interface EpidemeventService {
 
 	Epidemevent save(Epidemevent epidemevent);
@@ -10,6 +12,6 @@ public interface EpidemeventService {
 
 	void delete(Epidemevent event);
 
-	Iterable<Epidemevent> findAll();
+	List<Epidemevent> findAll();
 
 }

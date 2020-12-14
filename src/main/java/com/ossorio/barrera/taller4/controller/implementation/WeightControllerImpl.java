@@ -1,5 +1,6 @@
 package com.ossorio.barrera.taller4.controller.implementation;
 
+import com.ossorio.barrera.taller4.delegate.interfaces.SymptomquestionDelegate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,23 +19,23 @@ import com.ossorio.barrera.taller4.delegate.interfaces.SymptomWeightDelegate;
 public class WeightControllerImpl {
 
 	private final SymptomWeightDelegate symptomWeightDelegate;
-	private final SymptomquestionService questionService;
+	private final SymptomquestionDelegate symptomquestionDelegate;
 
-	public WeightControllerImpl(SymptomWeightDelegate symptomWeightDelegate, SymptomquestionService questionService) {
+	public WeightControllerImpl(SymptomWeightDelegate symptomWeightDelegate, SymptomquestionDelegate symptomquestionDelegate) {
 		this.symptomWeightDelegate = symptomWeightDelegate;
-		this.questionService = questionService;
+		this.symptomquestionDelegate = symptomquestionDelegate;
 	}
 
 	@GetMapping("/weight")
 	public String weightIndex(Model model) {
-		model.addAttribute("weights", symptomWeightDelegate.getAll());
+		model.addAttribute("weights", symptomWeightDelegate.findAll());
 		return "weight/index";
 	}
 
 	@GetMapping("/weight/add")
 	public String weightAdd(Model model) {
 		model.addAttribute("sympweightbyday", new Sympweightbyday());
-		model.addAttribute("symptomquestions", questionService.findAll());
+		model.addAttribute("symptomquestions", symptomquestionDelegate.findAll());
 		return "weight/add-weight";
 	}
 
@@ -44,7 +45,7 @@ public class WeightControllerImpl {
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.getAllErrors().toString());
-				model.addAttribute("symptomquestion", questionService.findAll());
+				model.addAttribute("symptomquestion", symptomquestionDelegate.findAll());
 				return "weight/add-weight";
 			}
 			symptomWeightDelegate.save(weight, weight.getSymptomquestion().getSympquesId());
@@ -55,7 +56,7 @@ public class WeightControllerImpl {
 	@GetMapping("/weight/edit/{id}")
 	public String editWeight(@PathVariable("id") long id, Model model) {
 		model.addAttribute("sympweightbyday", symptomWeightDelegate.findById(id));
-		model.addAttribute("symptomquestions", questionService.findAll());
+		model.addAttribute("symptomquestions", symptomquestionDelegate.findAll());
 		return "weight/edit-weight";
 	}
 
@@ -65,7 +66,7 @@ public class WeightControllerImpl {
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.getAllErrors().toString());
-				model.addAttribute("symptomquestion", questionService.findAll());
+				model.addAttribute("symptomquestion", symptomquestionDelegate.findAll());
 				return "weight/edit-weight";
 			}
 			weight.setSympweidaysId(id);

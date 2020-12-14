@@ -1,5 +1,6 @@
 package com.ossorio.barrera.taller4.controller.implementation;
 
+import com.ossorio.barrera.taller4.delegate.interfaces.SymptomDelegate;
 import com.ossorio.barrera.taller4.delegate.interfaces.SymptompollDelegate;
 import com.ossorio.barrera.taller4.delegate.interfaces.SymptomquestionDelegate;
 import org.springframework.stereotype.Controller;
@@ -21,26 +22,26 @@ public class QuestionControllerImpl {
 
 	private final SymptomquestionDelegate sympquesDelegate;
 	private final SymptompollDelegate symptompollDelegate;
-	private final SymptomService symptomService;
+	private final SymptomDelegate symptomDelegate;
 
 	public QuestionControllerImpl(SymptomquestionDelegate sympquesDelegate, SymptompollDelegate symptompollDelegate,
-								  SymptomService symptomService) {
+								  SymptomDelegate symptomDelegate) {
 		this.sympquesDelegate = sympquesDelegate;
 		this.symptompollDelegate = symptompollDelegate;
-		this.symptomService = symptomService;
+		this.symptomDelegate = symptomDelegate;
 	}
 
 	@GetMapping("/question")
 	public String questionIndex(Model model) {
-		model.addAttribute("questions", sympquesDelegate.getAll());
+		model.addAttribute("questions", sympquesDelegate.findAll());
 		return "questions/index";
 	}
 
 	@GetMapping("/question/add")
 	public String addQuestion(Model model) {
 		model.addAttribute("symptomquestion", new Symptomquestion());
-		model.addAttribute("symptompolls", symptompollDelegate.getAll());
-		model.addAttribute("symptoms", symptomService.findAll());
+		model.addAttribute("symptompolls", symptompollDelegate.findAll());
+		model.addAttribute("symptoms", symptomDelegate.findAll());
 		return "questions/add-question";
 	}
 
@@ -50,8 +51,8 @@ public class QuestionControllerImpl {
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.getAllErrors().toString());
-				model.addAttribute("symptompolls", symptompollDelegate.getAll());
-				model.addAttribute("symptoms", symptomService.findAll());
+				model.addAttribute("symptompolls", symptompollDelegate.findAll());
+				model.addAttribute("symptoms", symptomDelegate.findAll());
 				return "questions/add-question";
 			}
 			sympquesDelegate.save(sympques);
@@ -61,8 +62,8 @@ public class QuestionControllerImpl {
 
 	@GetMapping("/question/edit/{id}")
 	public String updateQuestion(@PathVariable("id") long id, Model model) {
-		model.addAttribute("symptompolls", symptompollDelegate.getAll());
-		model.addAttribute("symptoms", symptomService.findAll());
+		model.addAttribute("symptompolls", symptompollDelegate.findAll());
+		model.addAttribute("symptoms", symptomDelegate.findAll());
 		model.addAttribute("symptomquestion", sympquesDelegate.findById(id));
 		return "questions/edit-question";
 	}
@@ -74,8 +75,8 @@ public class QuestionControllerImpl {
 		if (!action.equals("Cancel")) {
 			if (bindingResult.hasErrors()) {
 				System.out.println(bindingResult.getAllErrors().toString());
-				model.addAttribute("symptompolls", symptompollDelegate.getAll());
-				model.addAttribute("symptoms", symptomService.findAll());
+				model.addAttribute("symptompolls", symptompollDelegate.findAll());
+				model.addAttribute("symptoms", symptomDelegate.findAll());
 				return "questions/edit-question";
 			}
 			question.setSympquesId(id);

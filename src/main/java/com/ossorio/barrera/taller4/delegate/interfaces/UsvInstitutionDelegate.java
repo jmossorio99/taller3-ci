@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UsvInstitutionDelegate {
 
-    List<UsvInstitution> getAll();
+    List<UsvInstitution> findAll();
 
     UsvInstitution findById(Long id);
 

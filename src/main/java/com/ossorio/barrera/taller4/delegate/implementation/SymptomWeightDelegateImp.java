@@ -39,7 +39,7 @@ public class SymptomWeightDelegateImp implements SymptomWeightDelegate {
     }
 
     @Override
-    public List<Sympweightbyday> getAll() {
+    public List<Sympweightbyday> findAll() {
         try{
            ResponseEntity<Sympweightbyday[]> response = restTemplate.getForEntity(SERVER, Sympweightbyday[].class);
            return Arrays.asList(response.getBody());

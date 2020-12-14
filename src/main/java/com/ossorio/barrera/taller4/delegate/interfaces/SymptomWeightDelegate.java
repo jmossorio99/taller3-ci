@@ -13,5 +13,5 @@ public interface SymptomWeightDelegate {
 
     void delete(Sympweightbyday sympweightbyday);
 
-    List<Sympweightbyday> getAll();
+    List<Sympweightbyday> findAll();
 }

@@ -29,7 +29,7 @@ public class PersonControllerImpl {
     @GetMapping("/person/add")
     public String addPerson(Model model) {
         model.addAttribute("person", new Person());
-        model.addAttribute("institutions", usvInstitutionDelegate.getAll());
+        model.addAttribute("institutions", usvInstitutionDelegate.findAll());
         return "person/add";
     }
 
@@ -38,7 +38,7 @@ public class PersonControllerImpl {
                                 @Validated @ModelAttribute Person person, BindingResult bindingResult, Model model) {
         if (!action.equals("Cancel")) {
             if (bindingResult.hasErrors()) {
-                model.addAttribute("institutions", usvInstitutionDelegate.getAll());
+                model.addAttribute("institutions", usvInstitutionDelegate.findAll());
                 return "person/add";
             }
             personDelegate.save(person);
@@ -49,7 +49,7 @@ public class PersonControllerImpl {
     @GetMapping("/person/edit/{id}")
     public String updatePerson(@PathVariable("id") Long id, Model model) {
         model.addAttribute("person", personDelegate.findById(id));
-        model.addAttribute("institutions", usvInstitutionDelegate.getAll());
+        model.addAttribute("institutions", usvInstitutionDelegate.findAll());
         return "person/edit";
     }
 
@@ -58,7 +58,7 @@ public class PersonControllerImpl {
                                    @Validated @ModelAttribute Person person, BindingResult bindingResult, Model model) {
         if (!action.equals("cancel")) {
             if (bindingResult.hasErrors()) {
-                model.addAttribute("institutions", usvInstitutionDelegate.getAll());
+                model.addAttribute("institutions", usvInstitutionDelegate.findAll());
                 return "person/edit";
             }
             person.setPersId(id);

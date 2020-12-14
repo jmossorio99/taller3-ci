@@ -24,7 +24,7 @@ public class UsvInstitutionControllerImpl {
 
 	@GetMapping("/institution")
 	public String indexInstitution(Model model) {
-		model.addAttribute("institutions", usvInstitutionDelegate.getAll());
+		model.addAttribute("institutions", usvInstitutionDelegate.findAll());
 		return "institution/index";
 	}
 

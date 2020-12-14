@@ -34,4 +34,14 @@ public class DelegatesConfig {
         return new PersonDelegateImpl();
     }
 
+    @Bean
+    public SymptomDelegate symptomDelegate() {
+        return new SymptomDelegateImpl();
+    }
+
+    @Bean
+    public EpidemeventDelegate epidemeventDelegate(){
+        return new EpidemeventDelegateImpl();
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.ossorio.barrera.taller4.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -101,6 +103,7 @@ public class Institution implements Serializable {
 	private List<Measurement> measurements;
 
 	// bi-directional many-to-one association to Person
+	@JsonIgnore
 	@OneToMany(mappedBy = "institution")
 	private List<Person> persons;
 

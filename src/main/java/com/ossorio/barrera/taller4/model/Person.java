@@ -1,5 +1,7 @@
 package com.ossorio.barrera.taller4.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -154,6 +156,7 @@ public class Person implements Serializable {
 	private List<Posession> posessions;
 
 	// bi-directional many-to-one association to Userr
+	@JsonIgnore
 	@OneToMany(mappedBy = "person")
 	private List<Userr> userrs;
 

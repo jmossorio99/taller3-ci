@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SymptompollDelegate {
 
-    List<Symptompoll> getAll();
+    List<Symptompoll> findAll();
 
     Symptompoll findById(Long id);
 

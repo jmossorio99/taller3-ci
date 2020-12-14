@@ -18,7 +18,7 @@ public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
     }
 
     @Override
-    public List<Symptomquestion> getAll() {
+    public List<Symptomquestion> findAll() {
         try{
             return Arrays.asList(restTemplate.getForObject(SERVER, Symptomquestion[].class));
         }catch(Exception e){

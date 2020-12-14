@@ -17,7 +17,7 @@ public class UsvInstitutionDelegateImpl implements UsvInstitutionDelegate {
     }
 
     @Override
-    public List<UsvInstitution> getAll() {
+    public List<UsvInstitution> findAll() {
         try {
             List<UsvInstitution> institutions = Arrays.asList(restTemplate.getForObject(SERVER, UsvInstitution[].class));
             return institutions;

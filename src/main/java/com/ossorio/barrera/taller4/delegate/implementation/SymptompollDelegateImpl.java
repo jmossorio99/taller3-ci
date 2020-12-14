@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SymptompollDelegateImpl implements SymptompollDelegate {
 
-    private final String SERVER = "http://localhost:8081/symptoms/";
+    private final String SERVER = "http://localhost:8081/symptompolls/";
     private final RestTemplate restTemplate;
 
     public SymptompollDelegateImpl() {
@@ -17,7 +17,7 @@ public class SymptompollDelegateImpl implements SymptompollDelegate {
     }
 
     @Override
-    public List<Symptompoll> getAll() {
+    public List<Symptompoll> findAll() {
         try {
             return Arrays.asList(restTemplate.getForObject(SERVER, Symptompoll[].class));
         } catch (Exception e) {
