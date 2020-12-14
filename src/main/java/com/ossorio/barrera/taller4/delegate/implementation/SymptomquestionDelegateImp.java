@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
 
-    private final String SERVER = "http://localhost:8081/questions/";
+    private final String SERVER = "http://localhost:8080/questions/";
     private final RestTemplate restTemplate;
 
     public SymptomquestionDelegateImp(){

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SymptomWeightDelegateImp implements SymptomWeightDelegate {
 
-    private final String SERVER = "http://localhost:8081/weights/";
+    private final String SERVER = "http://localhost:8080/weights/";
     private final RestTemplate restTemplate;
 
     public SymptomWeightDelegateImp() {

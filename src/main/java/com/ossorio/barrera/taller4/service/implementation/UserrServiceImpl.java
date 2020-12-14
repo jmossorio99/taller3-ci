@@ -14,7 +14,6 @@ public class UserrServiceImpl implements UserrService {
 
 	private final UserrRepository userRepository;
 
-	@Autowired
 	public UserrServiceImpl(UserrRepository userRepository) {
 		this.userRepository = userRepository;
 	}

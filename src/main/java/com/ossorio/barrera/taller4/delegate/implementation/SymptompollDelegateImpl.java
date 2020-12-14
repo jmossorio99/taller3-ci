@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SymptompollDelegateImpl implements SymptompollDelegate {
 
-    private final String SERVER = "http://localhost:8081/symptompolls/";
+    private final String SERVER = "http://localhost:8080/symptompolls/";
     private final RestTemplate restTemplate;
 
     public SymptompollDelegateImpl() {

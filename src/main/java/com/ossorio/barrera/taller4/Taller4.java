@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 @SpringBootApplication
-@ComponentScan("com.ossorio.barrera.taller4")
 public class Taller4 {
 
 	@Bean

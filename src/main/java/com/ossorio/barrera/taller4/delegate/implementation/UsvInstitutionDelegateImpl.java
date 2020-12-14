@@ -9,8 +9,8 @@ import java.util.List;
 
 public class UsvInstitutionDelegateImpl implements UsvInstitutionDelegate {
 
-    private final String SERVER = "http://localhost:8081/institutions/";
-    private final RestTemplate restTemplate;
+    private final String SERVER = "http://localhost:8080/institutions/";
+    RestTemplate restTemplate;
 
     public UsvInstitutionDelegateImpl() {
         this.restTemplate = new RestTemplate();

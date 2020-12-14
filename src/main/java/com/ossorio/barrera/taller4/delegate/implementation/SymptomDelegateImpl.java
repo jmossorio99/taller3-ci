@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class SymptomDelegateImpl implements SymptomDelegate {
 
-    private final String SERVER = "http://localhost:8081/symptoms/";
+    private final String SERVER = "http://localhost:8080/symptoms/";
     private final RestTemplate restTemplate;
 
     public SymptomDelegateImpl() {
