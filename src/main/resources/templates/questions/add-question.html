@@ -41,7 +41,7 @@
 								th:errors="*{symptompoll}" class="text-danger"></span>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="symptompoll" class="col-form-label">Symptom
+							<label for="symptom" class="col-form-label">Symptom
 							</label> <select name="symptom" th:field="*{symptom}">
 								<option th:each="symptom : ${symptoms}"
 									th:value="${symptom.sympId}" th:selected="${symptomquestion.symptom=symptom}" th:text="${symptom.sympId}"></option>

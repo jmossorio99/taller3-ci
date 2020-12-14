@@ -1,5 +1,6 @@
 package com.ossorio.barrera.taller4.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -48,6 +49,7 @@ public class Symptompoll implements Serializable {
     private Epidemevent epidemevent;
 
     // bi-directional many-to-one association to Symptomquestion
+    @JsonIgnore
     @OneToMany(mappedBy = "symptompoll")
     private List<Symptomquestion> symptomquestions;
 

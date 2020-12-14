@@ -26,10 +26,10 @@ public class UsvInstitutionRestController {
         return institutionService.findById(id);
     }
 
-    @GetMapping("/{name}")
-    public UsvInstitution findByName(@PathVariable("name") String name){
-        return institutionService.findByName(name);
-    }
+//    @GetMapping("/{name}")
+//    public UsvInstitution findByName(@PathVariable("name") String name){
+//        return institutionService.findByName(name);
+//    }
 
     @PostMapping
     public UsvInstitution save(@RequestBody UsvInstitution institution) {

@@ -29,7 +29,9 @@ public class SymptomquestionServiceImpl implements SymptomquestionService {
 
 	@Transactional
 	@Override
-	public Symptomquestion save(Symptomquestion symptomquestion, Long symptomId, Long pollId) {
+	public Symptomquestion save(Symptomquestion symptomquestion) {
+		Long symptomId = symptomquestion.getSymptom().getSympId();
+		Long pollId = symptomquestion.getSymptompoll().getSympollId();
 		if (symptomquestion != null && symptomId != null && pollId != null) {
 			if (symptomquestion.getSympquesName() != null && !symptomquestion.getSympquesName().isEmpty()) {
 				if (symptomService.findById(symptomId) != null) {

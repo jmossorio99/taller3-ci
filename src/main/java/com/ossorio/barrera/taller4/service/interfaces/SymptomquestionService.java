@@ -6,7 +6,7 @@ import com.ossorio.barrera.taller4.model.Symptomquestion;
 
 public interface SymptomquestionService {
 
-	Symptomquestion save(Symptomquestion symptomquestion, Long symptomId, Long pollId);
+	Symptomquestion save(Symptomquestion symptomquestion);
 
 	Symptomquestion update(Symptomquestion symptomquestion, Long symptomId, Long pollId);
 

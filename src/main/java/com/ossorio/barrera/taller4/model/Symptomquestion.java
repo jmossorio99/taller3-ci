@@ -1,5 +1,7 @@
 package com.ossorio.barrera.taller4.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -57,6 +59,7 @@ public class Symptomquestion implements Serializable {
 	private Symptompoll symptompoll;
 
 	// bi-directional many-to-one association to Sympweightbyday
+	@JsonIgnore
 	@OneToMany(mappedBy = "symptomquestion")
 	private List<Sympweightbyday> sympweightbydays;
 

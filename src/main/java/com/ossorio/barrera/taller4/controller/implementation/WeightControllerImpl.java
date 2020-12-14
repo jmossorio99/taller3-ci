@@ -69,7 +69,7 @@ public class WeightControllerImpl {
 				return "weight/edit-weight";
 			}
 			weight.setSympweidaysId(id);
-			symptomWeightDelegate.save(weight, weight.getSymptomquestion().getSympquesId());
+			symptomWeightDelegate.update(weight, weight.getSymptomquestion().getSympquesId());
 		}
 		return "redirect:/weight/";
 	}

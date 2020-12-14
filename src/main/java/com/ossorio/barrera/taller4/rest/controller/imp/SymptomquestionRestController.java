@@ -28,13 +28,12 @@ public class SymptomquestionRestController {
 
     @PostMapping
     public Symptomquestion add(@RequestBody Symptomquestion symptomquestion){
-        return symptomquestionService.save(symptomquestion, symptomquestion.getSympquesId(),
-                symptomquestion.getSymptompoll().getSympollId());
+        return symptomquestionService.save(symptomquestion);
     }
 
     @PutMapping
     public Symptomquestion update(@RequestBody Symptomquestion symptomquestion){
-        return symptomquestionService.update(symptomquestion, symptomquestion.getSympquesId(),
+        return symptomquestionService.update(symptomquestion, symptomquestion.getSymptom().getSympId(),
                 symptomquestion.getSymptompoll().getSympollId());
     }
 

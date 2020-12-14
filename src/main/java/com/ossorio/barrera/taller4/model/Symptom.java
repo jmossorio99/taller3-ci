@@ -1,6 +1,8 @@
 package com.ossorio.barrera.taller4.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -32,6 +34,7 @@ public class Symptom implements Serializable {
 	private List<DenialSymptom> denialSymptoms;
 
 	//bi-directional many-to-one association to Symptomquestion
+	@JsonIgnore
 	@OneToMany(mappedBy="symptom")
 	private List<Symptomquestion> symptomquestions;
 

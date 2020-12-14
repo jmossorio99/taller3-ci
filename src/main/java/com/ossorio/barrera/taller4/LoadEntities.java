@@ -94,8 +94,8 @@ public class LoadEntities {
 			epidemeventService.save(epidemevent);
 
 			final Symptom symptom1 = new Symptom();
-			symptom1.setSympId(0);
-			symptomService.save(symptom1);
+			symptom1.setSympName("Headache");
+			symptomService.save(symptom1).getSympId();
 
 //			final Sympweightbyday sympWeight1 = new Sympweightbyday();
 //			sympWeight1.setSympweidaysId(0);
