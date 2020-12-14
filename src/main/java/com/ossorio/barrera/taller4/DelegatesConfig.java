@@ -5,6 +5,7 @@ import com.ossorio.barrera.taller4.delegate.interfaces.*;
 import com.ossorio.barrera.taller4.model.Sympweightbyday;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class DelegatesConfig {
@@ -42,6 +43,11 @@ public class DelegatesConfig {
     @Bean
     public EpidemeventDelegate epidemeventDelegate(){
         return new EpidemeventDelegateImpl();
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
 
 }
