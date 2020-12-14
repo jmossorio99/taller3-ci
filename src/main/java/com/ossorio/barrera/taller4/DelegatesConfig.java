@@ -41,7 +41,7 @@ public class DelegatesConfig {
 
     @Bean
     public EpidemeventDelegate epidemeventDelegate(){
-        return new EpidemeventDelegateImpl();
+        return new EpidemeventDelegateImpl(8081);
     }
 
 }

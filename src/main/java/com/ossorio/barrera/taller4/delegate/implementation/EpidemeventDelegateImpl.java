@@ -9,10 +9,12 @@ import java.util.List;
 
 public class EpidemeventDelegateImpl implements EpidemeventDelegate {
 
-    private final String SERVER = "http://localhost:8081/epidemevent/";
+    private int port = 8081;
+    private String SERVER = "http://localhost:" + port + "/epidemevent/";
     private final RestTemplate restTemplate;
 
-    public EpidemeventDelegateImpl() {
+    public EpidemeventDelegateImpl(int port) {
+        this.port = port;
         this.restTemplate = new RestTemplate();
     }
 
@@ -40,4 +42,10 @@ public class EpidemeventDelegateImpl implements EpidemeventDelegate {
     public void delete(Epidemevent epidemevent) {
         restTemplate.delete(SERVER, epidemevent, Epidemevent.class);
     }
+
+    @Override
+    public void setPort(int port){
+        this.port = port;
+    }
+
 }

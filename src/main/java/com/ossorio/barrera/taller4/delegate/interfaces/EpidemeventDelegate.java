@@ -12,4 +12,6 @@ public interface EpidemeventDelegate {
 
     void delete(Epidemevent epidemevent);
 
+    void setPort(int port);
+
 }
