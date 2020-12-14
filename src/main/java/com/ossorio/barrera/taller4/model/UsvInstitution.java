@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
@@ -28,18 +29,18 @@ public class UsvInstitution implements Serializable {
 	@Column(name = "INST_ID")
 	private long instId;
 
-//	@NotBlank
+	@NotBlank
 	@Column(name = "INST_ACADEMICSERVERURL")
 	private String instAcademicserverurl;
 
-//	@NotBlank
+	@NotBlank
 	@Column(name = "INST_ACADEXTRADATAURL")
 	private String instAcadextradataurl;
 
 	@Column(name = "INST_ACADLOGINPASSWORD")
 	private String instAcadloginpassword;
 
-//	@NotBlank
+	@NotBlank
 	@Column(name = "INST_ACADLOGINURL")
 	private String instAcadloginurl;
 
@@ -49,11 +50,11 @@ public class UsvInstitution implements Serializable {
 	@Column(name = "INST_ACADPERSONINFODOCURL")
 	private String instAcadpersoninfodocurl;
 
-//	@NotBlank
+	@NotBlank
 	@Column(name = "INST_ACADPERSONINFOIDURL")
 	private String instAcadpersoninfoidurl;
 
-//	@NotBlank
+	@NotBlank
 	@Column(name = "INST_ACADPHYSICALSPACESURL")
 	private String instAcadphysicalspacesurl;
 
@@ -66,7 +67,7 @@ public class UsvInstitution implements Serializable {
 	@Column(name = "INST_LDAPPASSWORD")
 	private String instLdappassword;
 
-//	@NotBlank
+	@NotBlank
 	@Size(min = 11)
 	@Column(name = "INST_LDAPURL")
 	private String instLdapurl;
@@ -80,7 +81,7 @@ public class UsvInstitution implements Serializable {
 	@Column(name = "INST_LDAPUSERSEARCHFILTER")
 	private String instLdapusersearchfilter;
 
-//	@NotBlank
+	@NotBlank
 	@Column(name = "INST_NAME")
 	private String instName;
 
