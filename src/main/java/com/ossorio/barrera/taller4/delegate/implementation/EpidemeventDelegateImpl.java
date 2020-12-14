@@ -23,7 +23,12 @@ public class EpidemeventDelegateImpl implements EpidemeventDelegate {
 
     @Override
     public List<Epidemevent> findAll() {
-        return Arrays.asList(restTemplate.getForObject(SERVER, Epidemevent.class));
+        try{
+            return Arrays.asList(restTemplate.getForObject(SERVER, Epidemevent[].class));
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
