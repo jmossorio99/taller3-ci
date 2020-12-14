@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/institutions")
+@CrossOrigin
 public class UsvInstitutionRestController {
 
     private final UsvInstitutionService institutionService;
