@@ -48,7 +48,7 @@ public class WeightControllerImpl {
 				model.addAttribute("symptomquestion", symptomquestionDelegate.findAll());
 				return "weight/add-weight";
 			}
-			symptomWeightDelegate.save(weight, weight.getSymptomquestion().getSympquesId());
+			symptomWeightDelegate.save(weight);
 		}
 		return "redirect:/weight/";
 	}
@@ -70,7 +70,7 @@ public class WeightControllerImpl {
 				return "weight/edit-weight";
 			}
 			weight.setSympweidaysId(id);
-			symptomWeightDelegate.update(weight, weight.getSymptomquestion().getSympquesId());
+			symptomWeightDelegate.update(weight);
 		}
 		return "redirect:/weight/";
 	}

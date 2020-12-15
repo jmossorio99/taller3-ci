@@ -11,19 +11,19 @@ import java.util.List;
 public class SymptomWeightDelegateImp implements SymptomWeightDelegate {
 
     private final String SERVER = "http://localhost:8080/weights/";
-    private final RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     public SymptomWeightDelegateImp() {
         this.restTemplate = new RestTemplate();
     }
 
     @Override
-    public Sympweightbyday save(Sympweightbyday sympweightbyday, Long questionId) {
-        return restTemplate.postForObject(SERVER, sympweightbyday, Sympweightbyday.class);
+    public Sympweightbyday save(Sympweightbyday sympweightbyday) {
+        return restTemplate.postForEntity(SERVER, sympweightbyday, Sympweightbyday.class).getBody();
     }
 
     @Override
-    public Sympweightbyday update(Sympweightbyday sympweightbyday, Long questionId) {
+    public Sympweightbyday update(Sympweightbyday sympweightbyday) {
         restTemplate.put(SERVER, sympweightbyday, Sympweightbyday.class);
         return sympweightbyday;
     }
@@ -41,8 +41,7 @@ public class SymptomWeightDelegateImp implements SymptomWeightDelegate {
     @Override
     public List<Sympweightbyday> findAll() {
         try{
-           ResponseEntity<Sympweightbyday[]> response = restTemplate.getForEntity(SERVER, Sympweightbyday[].class);
-           return Arrays.asList(response.getBody());
+           return Arrays.asList(restTemplate.getForObject(SERVER, Sympweightbyday[].class));
         }catch(Exception e){
             e.printStackTrace();
             return null;
