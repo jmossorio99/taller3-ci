@@ -11,7 +11,7 @@ import java.util.List;
 public class SymptomquestionDelegateImp implements SymptomquestionDelegate {
 
     private final String SERVER = "http://localhost:8080/questions/";
-    private final RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     public SymptomquestionDelegateImp(){
         this.restTemplate = new RestTemplate();

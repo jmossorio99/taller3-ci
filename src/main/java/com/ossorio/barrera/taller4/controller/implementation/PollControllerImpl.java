@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ossorio.barrera.taller4.model.Symptompoll;
-import com.ossorio.barrera.taller4.service.interfaces.EpidemeventService;
-import com.ossorio.barrera.taller4.service.interfaces.SymptomquestionService;
-import com.ossorio.barrera.taller4.service.interfaces.UsvInstitutionService;
 
 @Controller
 public class PollControllerImpl {

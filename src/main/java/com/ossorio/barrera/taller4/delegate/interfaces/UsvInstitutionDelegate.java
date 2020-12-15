@@ -16,6 +16,6 @@ public interface UsvInstitutionDelegate {
 
     UsvInstitution update(UsvInstitution institution);
 
-    void delete(UsvInstitution institution);
+    UsvInstitution delete(UsvInstitution institution);
 
 }

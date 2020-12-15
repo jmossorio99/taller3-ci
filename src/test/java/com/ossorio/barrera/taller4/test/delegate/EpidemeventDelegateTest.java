@@ -1,27 +1,20 @@
 package com.ossorio.barrera.taller4.test.delegate;
 
-import com.ossorio.barrera.taller4.Taller4;
 import com.ossorio.barrera.taller4.delegate.implementation.EpidemeventDelegateImpl;
-import com.ossorio.barrera.taller4.delegate.interfaces.EpidemeventDelegate;
 import com.ossorio.barrera.taller4.model.Epidemevent;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
 @RunWith(MockitoJUnitRunner.class)

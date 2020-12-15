@@ -51,7 +51,8 @@ public class UsvInstitutionDelegateImpl implements UsvInstitutionDelegate {
     }
 
     @Override
-    public void delete(UsvInstitution institution) {
+    public UsvInstitution delete(UsvInstitution institution) {
         restTemplate.delete(SERVER, institution, UsvInstitution.class);
+        return institution;
     }
 }

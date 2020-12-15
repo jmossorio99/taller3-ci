@@ -10,6 +10,8 @@ public interface SymptomDelegate {
 
     Symptom save(Symptom symptom);
 
+    Symptom update(Symptom symptom);
+
     void delete(Symptom symptom);
 
 }
