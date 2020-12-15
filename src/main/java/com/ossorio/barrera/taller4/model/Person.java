@@ -121,7 +121,7 @@ public class Person implements Serializable {
 	@JoinColumn(name = "INST_INST_ID")
 	private Institution institution;
 
-	private UsvInstitution usvInstitution;
+	private long usvInstitutionId;
 
 	// bi-directional many-to-one association to Personautotran
 	@OneToMany(mappedBy = "person")
@@ -495,10 +495,10 @@ public class Person implements Serializable {
 		this.institution = institution;
 	}
 
-	public UsvInstitution getUsvInstitution() { return usvInstitution; }
+	public Long getUsvInstitutionId() { return usvInstitutionId; }
 
-	public void setUsvInstitution(UsvInstitution usvInstitution) {
-		this.usvInstitution = usvInstitution;
+	public void setUsvInstitutionId(Long usvInstitutionId) {
+		this.usvInstitutionId = usvInstitutionId;
 	}
 
 	public List<Personautotran> getPersonautotrans() {

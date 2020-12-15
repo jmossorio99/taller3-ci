@@ -10,7 +10,7 @@ public interface PersonDelegate {
 
     Person update(Person person);
 
-    void delete(Person person);
+    void delete(Long id);
 
     List<Person> findAll();
 

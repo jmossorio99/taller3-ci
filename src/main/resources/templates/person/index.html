@@ -36,11 +36,14 @@
                     <tbody>
                     <tr th:each="person : ${persons}">
                         <td class="text-info" th:text="${person.persName}"></td>
-                        <td class="text-info" th:text="${person.usvInstitution}"></td>
+                        <td class="text-info" th:text="${person.usvInstitutionId}"></td>
                         <td><a th:href="@{/person/edit/{id}(id=${person.persId})}"
                                class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                        <td><a th:href="@{/person/delete/{id}(id=${person.persId})}"
-                               class="btn btn-primary"><i class="fas fa-user-delete ml-2"></i></a></td>
+                        <td>
+                        <form action="#" th:action="@{/person/delete/{id}(id=${person.persId})}" th:method="post">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-user-minus"></i></button>
+                        </form>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

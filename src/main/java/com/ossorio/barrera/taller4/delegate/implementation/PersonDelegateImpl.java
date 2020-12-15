@@ -29,8 +29,8 @@ public class PersonDelegateImpl implements PersonDelegate {
     }
 
     @Override
-    public void delete(Person person) {
-        restTemplate.delete(SERVER, person, Person.class);
+    public void delete(Long id) {
+        restTemplate.delete(SERVER + id);
     }
 
     @Override

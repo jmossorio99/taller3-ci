@@ -32,13 +32,13 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="usvInstitution" class="col-form-label">Institution
-                        </label> <select name="usvInstitution" th:field="*{usvInstitution}">
+                        </label> <select name="usvInstitution" th:field="*{usvInstitutionId}">
                         <option th:each="usvInstitution : ${institutions}"
-                                th:value="${usvInstitution.instId}" th:selected="${person.usvInstitution=usvInstitution}" th:text="${usvInstitution.instId}"></option>
+                                th:value="${usvInstitution.instId}" th:selected="${person.usvInstitutionId=usvInstitution}" th:text="${usvInstitution.instId}"></option>
                     </select>
                         <span
-                                th:if="${#fields.hasErrors('usvInstitution')}"
-                                th:errors="*{usvInstitution}" class="text-danger"></span>
+                                th:if="${#fields.hasErrors('usvInstitutionId')}"
+                                th:errors="*{usvInstitutionId}" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">

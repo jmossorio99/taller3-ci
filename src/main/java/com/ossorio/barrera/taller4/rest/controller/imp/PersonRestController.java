@@ -36,9 +36,9 @@ public class PersonRestController {
         return personService.update(person);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody Person person){
-        personService.delete(person);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id){
+        personService.delete(personService.findById(id));
     }
 
 }

@@ -2,6 +2,8 @@ package com.ossorio.barrera.taller4;
 
 import java.util.ArrayList;
 
+import com.ossorio.barrera.taller4.dao.interfaces.UsvInstitutionDao;
+import com.ossorio.barrera.taller4.service.interfaces.UsvInstitutionService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,8 @@ import com.ossorio.barrera.taller4.security.ApplicationUserRole;
 import com.ossorio.barrera.taller4.service.interfaces.EpidemeventService;
 import com.ossorio.barrera.taller4.service.interfaces.SymptomService;
 import com.ossorio.barrera.taller4.service.interfaces.SympweightbydayService;
+
+import javax.transaction.Transactional;
 
 @Configuration
 public class LoadEntities {
@@ -74,8 +78,8 @@ public class LoadEntities {
 
 	@Bean
 	CommandLineRunner loadInstitutions(UsvInstitutionRepository institutionRepository,
-			EpidemeventService epidemeventService, SymptomService symptomService,
-			SympweightbydayService sympweightbydayService) {
+									   EpidemeventService epidemeventService, SymptomService symptomService,
+									   SympweightbydayService sympweightbydayService, UsvInstitutionService usvInstitutionService) {
 
 		return args -> {
 			final UsvInstitution institution1 = new UsvInstitution();
@@ -87,7 +91,7 @@ public class LoadEntities {
 			institution1.setInstAcadphysicalspacesurl("https://url.com");
 			institution1.setInstLdapurl("https://url.com");
 			institution1.setInstName("Institution 1126");
-			institutionRepository.save(institution1);
+			usvInstitutionService.save(institution1);
 
 			final Epidemevent epidemevent = new Epidemevent();
 			epidemevent.setEpieveId(0);

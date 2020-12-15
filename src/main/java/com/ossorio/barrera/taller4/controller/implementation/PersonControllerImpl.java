@@ -56,7 +56,7 @@ public class PersonControllerImpl {
     @PostMapping("/person/edit/{id}")
     public String updatePersonPost(@RequestParam(value = "action", required = true) String action, @PathVariable("id") long id,
                                    @Validated @ModelAttribute Person person, BindingResult bindingResult, Model model) {
-        if (!action.equals("cancel")) {
+        if (!action.equals("Cancel")) {
             if (bindingResult.hasErrors()) {
                 model.addAttribute("institutions", usvInstitutionDelegate.findAll());
                 return "person/edit";
@@ -69,7 +69,7 @@ public class PersonControllerImpl {
 
     @PostMapping("/person/delete/{id}")
     public String deletePerson(@PathVariable("id") long id, Model model){
-        personDelegate.delete(personDelegate.findById(id));
+        personDelegate.delete(id);
         return "redirect:/person/";
     }
 
