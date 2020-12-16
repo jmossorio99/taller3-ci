@@ -3,28 +3,18 @@ package com.ossorio.barrera.taller4;
 import java.util.ArrayList;
 
 import com.ossorio.barrera.taller4.dao.interfaces.UsvInstitutionDao;
-import com.ossorio.barrera.taller4.service.interfaces.UsvInstitutionService;
+import com.ossorio.barrera.taller4.model.*;
+import com.ossorio.barrera.taller4.service.interfaces.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.ossorio.barrera.taller4.model.Epidemevent;
-import com.ossorio.barrera.taller4.model.Person;
-import com.ossorio.barrera.taller4.model.PersonRole;
-import com.ossorio.barrera.taller4.model.PersonRolePK;
-import com.ossorio.barrera.taller4.model.Rolee;
-import com.ossorio.barrera.taller4.model.Symptom;
-import com.ossorio.barrera.taller4.model.Userr;
-import com.ossorio.barrera.taller4.model.UsvInstitution;
 import com.ossorio.barrera.taller4.repository.PersonRepository;
 import com.ossorio.barrera.taller4.repository.PersonRoleRepository;
 import com.ossorio.barrera.taller4.repository.RoleeRepository;
 import com.ossorio.barrera.taller4.repository.UserrRepository;
 import com.ossorio.barrera.taller4.repository.UsvInstitutionRepository;
 import com.ossorio.barrera.taller4.security.ApplicationUserRole;
-import com.ossorio.barrera.taller4.service.interfaces.EpidemeventService;
-import com.ossorio.barrera.taller4.service.interfaces.SymptomService;
-import com.ossorio.barrera.taller4.service.interfaces.SympweightbydayService;
 
 import javax.transaction.Transactional;
 
@@ -79,7 +69,8 @@ public class LoadEntities {
 	@Bean
 	CommandLineRunner loadInstitutions(UsvInstitutionRepository institutionRepository,
 									   EpidemeventService epidemeventService, SymptomService symptomService,
-									   SympweightbydayService sympweightbydayService, UsvInstitutionService usvInstitutionService) {
+									   SympweightbydayService sympweightbydayService, UsvInstitutionService usvInstitutionService,
+									   ContactfenceService contactfenceService) {
 
 		return args -> {
 			final UsvInstitution institution1 = new UsvInstitution();
@@ -99,7 +90,12 @@ public class LoadEntities {
 
 			final Symptom symptom1 = new Symptom();
 			symptom1.setSympName("Headache");
-			symptomService.save(symptom1).getSympId();
+			symptomService.save(symptom1);
+
+			final Contactfence cf = new Contactfence();
+			cf.setContfenId(1);
+			contactfenceService.save(cf);
+			System.out.println(contactfenceService.findById(1L));
 
 //			final Sympweightbyday sympWeight1 = new Sympweightbyday();
 //			sympWeight1.setSympweidaysId(0);

@@ -46,6 +46,16 @@ public class DelegatesConfig {
     }
 
     @Bean
+    public PersonFenceDelegate personFenceDelegate(){
+        return new PersonFenceDelegateImpl();
+    }
+
+    @Bean
+    public ContactfenceDelegate contactfenceDelegate(){
+        return new ContactfenceDelegateImpl();
+    }
+
+    @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
