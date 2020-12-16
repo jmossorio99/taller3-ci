@@ -2,7 +2,6 @@ package com.ossorio.barrera.taller4.delegate.implementation;
 
 import com.ossorio.barrera.taller4.delegate.interfaces.PersonDelegate;
 import com.ossorio.barrera.taller4.model.Person;
-import com.ossorio.barrera.taller4.model.Symptompoll;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;

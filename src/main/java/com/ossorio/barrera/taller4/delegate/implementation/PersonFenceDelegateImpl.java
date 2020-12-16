@@ -3,6 +3,7 @@ package com.ossorio.barrera.taller4.delegate.implementation;
 import com.ossorio.barrera.taller4.delegate.interfaces.PersonDelegate;
 import com.ossorio.barrera.taller4.delegate.interfaces.PersonFenceDelegate;
 import com.ossorio.barrera.taller4.model.PersonFence;
+import com.ossorio.barrera.taller4.model.PersonFencePK;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -29,8 +30,8 @@ public class PersonFenceDelegateImpl implements PersonFenceDelegate {
     }
 
     @Override
-    public void delete(Long id) {
-        restTemplate.delete(SERVER+id);
+    public void delete(PersonFencePK id) {
+        restTemplate.delete(SERVER, id);
     }
 
     @Override

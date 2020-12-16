@@ -72,7 +72,7 @@ public class LoadEntities {
 	CommandLineRunner loadInstitutions(UsvInstitutionRepository institutionRepository,
 									   EpidemeventService epidemeventService, SymptomService symptomService,
 									   SympweightbydayService sympweightbydayService, UsvInstitutionService usvInstitutionService,
-									   ContactfenceService contactfenceService) {
+									   ContactfenceService contactfenceService, PersonFenceService personFenceService, PersonService personService) {
 
 		return args -> {
 			final UsvInstitution institution1 = new UsvInstitution();
@@ -96,7 +96,16 @@ public class LoadEntities {
 
 			final Contactfence cf = new Contactfence();
 			contactfenceService.save(cf);
-
+			final Contactfence cf2 = new Contactfence();
+			contactfenceService.save(cf2);
+			final PersonFencePK pfpk = new PersonFencePK();
+			pfpk.setPersPersId(personService.findById(1L).getPersId());
+			pfpk.setContfenContfenId(contactfenceService.findAll().get(0).getContfenId());
+			final PersonFence pf = new PersonFence();
+			pf.setContactfence(cf);
+			pf.setId(pfpk);
+			pf.setPerson(personService.findById(1L));
+			personFenceService.save(pf);
 //			final Sympweightbyday sympWeight1 = new Sympweightbyday();
 //			sympWeight1.setSympweidaysId(0);
 //			sympWeight1.setSympweidaysMax(BigDecimal.valueOf(10));
