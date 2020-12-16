@@ -1,6 +1,8 @@
 package com.ossorio.barrera.taller4.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -41,11 +43,13 @@ public class Contactfence implements Serializable {
 	private BigDecimal instInstId;
 
 	//bi-directional many-to-one association to Contactfence
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="CONTFEN_CONTFEN_IDPARENT")
 	private Contactfence contactfence;
 
 	//bi-directional many-to-one association to Contactfence
+	@JsonIgnore
 	@OneToMany(mappedBy="contactfence")
 	private List<Contactfence> contactfences;
 
@@ -55,6 +59,7 @@ public class Contactfence implements Serializable {
 	private Person person;
 
 	//bi-directional many-to-one association to PersonFence
+	@JsonIgnore
 	@OneToMany(mappedBy="contactfence")
 	private List<PersonFence> personFences;
 

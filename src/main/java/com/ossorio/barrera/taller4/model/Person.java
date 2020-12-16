@@ -136,6 +136,7 @@ public class Person implements Serializable {
 	private List<Personrelationship> personrelationships2;
 
 	// bi-directional many-to-one association to PersonFence
+	@JsonIgnore
 	@OneToMany(mappedBy = "person")
 	private List<PersonFence> personFences;
 
