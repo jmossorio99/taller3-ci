@@ -11,7 +11,7 @@ import java.util.List;
 public class PersonDelegateImpl implements PersonDelegate {
 
     private final String SERVER = "http://localhost:8080/persons/";
-    private final RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     public PersonDelegateImpl() {
         this.restTemplate = new RestTemplate();
