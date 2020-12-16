@@ -1,6 +1,7 @@
 package com.ossorio.barrera.taller4;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import com.ossorio.barrera.taller4.dao.interfaces.UsvInstitutionDao;
 import com.ossorio.barrera.taller4.model.*;
@@ -25,7 +26,9 @@ public class LoadEntities {
 	CommandLineRunner initDatabase(UserrRepository userrRepository, RoleeRepository roleeRepository,
 			PersonRoleRepository personRoleRepository, PersonRepository personRepository) {
 		return args -> {
-
+			if(personRepository.findAll().iterator().hasNext()){
+				return;
+			}
 			// Adding first user with role ADMIN
 			final Rolee role1 = new Rolee();
 			role1.setRoleName(ApplicationUserRole.OPERATOR.name());
@@ -75,6 +78,12 @@ public class LoadEntities {
 									   ContactfenceService contactfenceService, PersonFenceService personFenceService, PersonService personService) {
 
 		return args -> {
+			if(epidemeventService.findAll().size() > 0){
+				return;
+			}
+			if(contactfenceService.findAll().size() > 0){
+				return;
+			}
 			final UsvInstitution institution1 = new UsvInstitution();
 			institution1.setInstId(0);
 			institution1.setInstAcademicserverurl("https://url.com");
