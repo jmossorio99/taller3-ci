@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -22,28 +24,28 @@ public class Symptompoll implements Serializable {
     @Column(name = "SYMPOLL_ID")
     private long sympollId;
 
-    // @NotNull
+    @NotNull
     @Column(name = "INST_INST_ID")
     private long instInstId;
 
-    // @NotNull
+    @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "SYMPOLL_ENDDATE")
     private Date sympollEnddate;
 
-    // @NotBlank
+    @NotBlank
     @Column(name = "SYMPOLL_NAME")
     private String sympollName;
 
-    // @NotNull
+    @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "SYMPOLL_STARTDATE")
     private Date sympollStartdate;
 
     // bi-directional many-to-one association to Epidemevent
-    // @NotNull
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "EPIEVE_EPIEVE_ID")
     private Epidemevent epidemevent;

@@ -61,7 +61,8 @@ public class SymptompollDaoImp implements SymptompollDao {
 	@Override
 	public List<Symptompoll> findByDateOrdered(Date date) {
 //		final String query = "SELECT a FROM Symptompoll a WHERE :date BETWEEN a.sympollStartdate AND a.sympollEnddate ORDER BY a.sympollStartdate ASC";
-		final String query = "SELECT a, (SELECT count(q) FROM Symptomquestion q WHERE q.symptompoll.sympollId=a.sympollId) FROM Symptompoll a WHERE :date BETWEEN a.sympollStartdate AND a.sympollEnddate ORDER BY a.sympollStartdate ASC";
+//		final String query = "SELECT a, (SELECT count(q) FROM Symptomquestion q WHERE q.symptompoll.sympollId=a.sympollId) FROM Symptompoll a WHERE :date BETWEEN a.sympollStartdate AND a.sympollEnddate ORDER BY a.sympollStartdate ASC";
+		final String query = "SELECT a FROM Symptompoll a WHERE :date BETWEEN a.sympollStartdate AND a.sympollEnddate ORDER BY a.sympollStartdate ASC";
 		return entityManager.createQuery(query).setParameter("date", date, TemporalType.DATE).getResultList();
 	}
 

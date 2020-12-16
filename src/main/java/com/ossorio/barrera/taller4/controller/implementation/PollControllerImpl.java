@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ossorio.barrera.taller4.model.Symptompoll;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PollControllerImpl {
 
@@ -96,6 +99,26 @@ public class PollControllerImpl {
 	public String showPollInstitution(@PathVariable("id") long id, Model model) {
 		model.addAttribute("institution", usvInstitutionDelegate.findById(symptompollDelegate.findById(id).getInstInstId()));
 		return "poll/poll-institution";
+	}
+
+	@GetMapping("/poll/find-by-date")
+	public String findByDate(@RequestParam(value = "startDate", required = true) String startDate, @RequestParam(value = "endDate", required = true) String endDate, Model model){
+		if (startDate == null || endDate == null){
+			return "poll/index";
+		}
+		List<Symptompoll> symptompolls = symptompollDelegate.findByDate(startDate, endDate);
+		model.addAttribute("symptompolls", symptompolls);
+		return "poll/find-by-date";
+	}
+
+	@GetMapping("/poll/find-by-date-ordered")
+	public String findByDate(@RequestParam(value = "date", required = true) String date, Model model){
+		if (date == null){
+			return "poll/index";
+		}
+		List<Symptompoll> symptompolls = symptompollDelegate.findByDateOrdered(date);
+		model.addAttribute("symptompolls", symptompolls);
+		return "poll/find-by-date-ordered";
 	}
 
 }

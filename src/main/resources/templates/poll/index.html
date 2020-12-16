@@ -56,6 +56,21 @@
 				</p>
 			</div>
 		</div>
+		<div>
+			<form th:action="@{/poll/find-by-date}" method="get">
+				<h2>Find polls within dates: </h2>
+				<input type="text" th:name="startDate" placeholder="Starting Date in format yyy-mm-dd"/>
+				<input type="text" th:name="endDate" placeholder="Ending Date in format yyy-mm-dd"/>
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
+		</div>
+		<div>
+			<form th:action="@{/poll/find-by-date-ordered}" method="get">
+				<h2>Find polls ordered that include date: </h2>
+				<input type="text" th:name="date" placeholder="Date in format yyy-mm-dd"/>
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
+		</div>
 		<a href="/"><i class="fas fa-home ml-2"></i> Go back to main</a>
 	</div>
 </body>
