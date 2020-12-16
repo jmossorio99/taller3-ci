@@ -71,6 +71,12 @@
 				<button class="btn btn-primary" type="submit">Search</button>
 			</form>
 		</div>
+		<div>
+			<form th:action="@{/poll/zero-questions}" method="get">
+				<h2>Find polls with questions with weight zero </h2>
+				<button class="btn btn-primary" type="submit">Search</button>
+			</form>
+		</div>
 		<a href="/"><i class="fas fa-home ml-2"></i> Go back to main</a>
 	</div>
 </body>

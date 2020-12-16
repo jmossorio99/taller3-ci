@@ -121,4 +121,11 @@ public class PollControllerImpl {
 		return "poll/find-by-date-ordered";
 	}
 
+	@GetMapping("/poll/zero-questions")
+	public String findByDate(Model model){
+		List<Symptompoll> symptompolls = symptompollDelegate.listZeroWeightQuestions();
+		model.addAttribute("symptompolls", symptompolls);
+		return "poll/zero-questions";
+	}
+
 }
