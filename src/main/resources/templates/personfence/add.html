@@ -25,23 +25,20 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="contactfence" class="col-form-label">Contact fence
-                        </label> <select name="contacfence" th:field="*{contfenId}">
-                        <option th:each="cf : ${contactfences}"
-                                th:value="${cf.contfenId}" th:selected="${personfence.contactfence=cf}" th:text="${cf.contfenId}"></option>
+                        </label> <select name="contactfence" th:field="*{contactfence}">
+                        <option th:each="contactfence : ${contactfences}"
+                                th:value="${contactfence.contfenId}" th:selected="${personfence.contactfence=contactfence}" th:text="${contactfence.contfenId}"></option>
                     </select>
                         <span
-                                th:if="${#fields.hasErrors('contfenId')}"
-                                th:errors="*{contfenId}" class="text-danger"></span>
+                                th:if="${#fields.hasErrors('contactfence')}"
+                                th:errors="*{contactfence}" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="person" class="col-form-label">Person
-                        </label> <select name="person" th:field="*{persId}">
-                        <option th:each="p : ${persons}"
-                                th:value="${p.persId}" th:selected="${personfence.person=p}" th:text="${person.persName}"></option>
+                        </label> <select name="person" th:field="*{person}">
+                        <option th:each="person : ${persons}"
+                                th:value="${person.persId}" th:selected="${personfence.person=person}" th:text="${person.persId}"></option>
                     </select>
-                        <span
-                                th:if="${#fields.hasErrors('persId')}"
-                                th:errors="*{persId}" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">

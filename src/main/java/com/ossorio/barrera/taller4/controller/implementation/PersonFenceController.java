@@ -35,6 +35,7 @@ public class PersonFenceController {
 
     @GetMapping("personfence/add")
     public String addPersonFenceGet(Model model){
+        model.addAttribute("personfence", new PersonFence());
         model.addAttribute("contactfences", contactfenceDelegate.findAll());
         model.addAttribute("persons", personDelegate.findAll());
         return "personfence/add";
@@ -43,7 +44,9 @@ public class PersonFenceController {
     @PostMapping("/personfence/add")
     public String addPersonFence(@RequestParam(value="action", required = true) String action, @Validated @ModelAttribute PersonFence pf, BindingResult bindingResult, Model model){
         if(!action.equals("Cancel")){
-            if(bindingResult.hasErrors()){
+            if (bindingResult.hasErrors()) {
+                model.addAttribute("personfence", new PersonFence());
+                model.addAttribute("contactfences", contactfenceDelegate.findAll());
                 model.addAttribute("persons", personDelegate.findAll());
                 return "personfence/add";
             }

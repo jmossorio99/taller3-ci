@@ -32,6 +32,7 @@ public class LoadEntities {
 			final PersonRole personRole1 = new PersonRole();
 			personRole1.setRolee(role1);
 			final Person person1 = new Person();
+			person1.setPersName("Barrera");
 			person1.setPersonRoles(new ArrayList<PersonRole>());
 			person1.addPersonRole(personRole1);
 			final PersonRolePK personRolePK = new PersonRolePK();
@@ -55,6 +56,7 @@ public class LoadEntities {
 			personRole2.setRolee(role2);
 			// personRoleRepository.save(personRole2);
 			final Person person2 = new Person();
+			person2.setPersName("Ossorio");
 			person2.setPersonRoles(new ArrayList<PersonRole>());
 			person2.addPersonRole(personRole2);
 			personRepository.save(person2);
@@ -93,9 +95,7 @@ public class LoadEntities {
 			symptomService.save(symptom1);
 
 			final Contactfence cf = new Contactfence();
-			cf.setContfenId(1);
 			contactfenceService.save(cf);
-			System.out.println(contactfenceService.findById(1L));
 
 //			final Sympweightbyday sympWeight1 = new Sympweightbyday();
 //			sympWeight1.setSympweidaysId(0);
